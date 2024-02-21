@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  background-color: #121212;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.button {
+  padding: 0.6rem 1.1rem;
+  background-color: #ff5722;
+  border: 2px solid #ff6d3b;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+
+  &:hover {
+    background-color: #ff6d3b;
+  }
+
+  &:active {
+    background-color: #ff4b15;
+  }
+}
