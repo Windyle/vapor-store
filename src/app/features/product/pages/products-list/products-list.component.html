@@ -1,16 +1,22 @@
 <main class="container">
-  <header class="header">
-    <button class="button">New Product</button>
-  </header>
+  <section class="header">
+    <a routerLink="/product" class="button">New Product</a>
+  </section>
 
   <section class="grid">
+    <!-- Products grid defer -->
+    @defer (when productsService.products().length > 0) {
+
+    <!-- Products grid-->
     @for (product of productsService.products(); track product.id) {
-    <div class="card">
-      <div class="card__actions"></div>
-      <div class="card__details"></div>
-    </div>
+    <app-card [product]="product" />
     } @empty {
     <div class="empty">No products found</div>
+    }
+
+    <!-- Products loading placeholder -->
+    } @placeholder {
+    <div class="empty">Loading...</div>
     }
   </section>
 </main>

@@ -1,0 +1,26 @@
+@import "../../../../styles/variables";
+
+.btn {
+  width: 36px;
+  aspect-ratio: 1/1;
+
+  border-radius: 50%;
+  border: none;
+
+  display: grid;
+  place-items: center;
+
+  background-color: transparentize($danger, 0.4);
+  transition: background-color 0.1s ease-in-out;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: $danger;
+  }
+
+  &__icon {
+    font-size: 1.1rem;
+    color: $danger-text;
+  }
+}

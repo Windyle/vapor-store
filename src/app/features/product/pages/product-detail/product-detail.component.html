@@ -1,1 +1,25 @@
-<p>product works!</p>
+<div class="container">
+  @if (productForm) {
+  <form [formGroup]="productForm">
+    <input formControlName="name" type="text" placeholder="Name" />
+    <input
+      formControlName="description"
+      type="text"
+      placeholder="Description"
+    />
+    <input formControlName="price" type="number" placeholder="Price" />
+    <input formControlName="imageUrl" type="text" placeholder="Image URL" />
+    <app-input />
+  </form>
+
+  <!-- Image Preview -->
+  <div>
+    @if (productForm.get('imageUrl')) {
+    <img
+      [src]="productForm.get('imageUrl')!.value || defaultImageUrl"
+      alt="Product Image"
+    />
+    }
+  </div>
+  }
+</div>

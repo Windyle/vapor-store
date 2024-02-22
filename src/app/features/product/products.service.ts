@@ -1,50 +1,33 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { Product } from '../../core/models/product';
-import { StorageService } from '../../shared/services/storage.service';
+import { Product, ProductInput } from '../../core/models/product';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProductsService {
+  // Consts
+  private readonly API_HOST = 'http://localhost:3000';
+
   // Properties
-
-  private defaultProducts: Product[] = [
-    {
-      id: '1',
-      name: 'Product 1',
-      description: 'Description for product 1',
-      price: 100,
-    },
-    {
-      id: '2',
-      name: 'Product 2',
-      description: 'Description for product 2',
-      price: 200,
-    },
-    {
-      id: '3',
-      name: 'Product 3',
-      description: 'Description for product 3',
-      price: 300,
-    },
-  ];
-
-  products = signal<Product[]>(this.defaultProducts);
+  products = signal<Product[]>([]);
 
   // Services
-  private storageService = inject(StorageService);
+  http = inject(HttpClient);
 
   constructor() {}
 
   loadProducts(): void {
-    const productsString: string | null =
-      this.storageService.getItem('products');
+    this.http
+      .get<Product[]>(`${this.API_HOST}/product`)
+      .subscribe((products) => {
+        this.products.set(products);
 
-    if (productsString) {
-      this.products.set(JSON.parse(productsString));
-    }
+        console.log(this.products());
+      });
   }
 
-  getProduct(id: string): Product | null {
-    return this.products().find((product) => product.id === id) || null;
+  getProduct(id: number): Observable<Product | null> {
+    return this.http.get<Product | null>(`${this.API_HOST}/product/${id}`);
   }
 
   createProduct(product: Product): boolean {
@@ -52,8 +35,6 @@ export class ProductsService {
       this.products.update((products) => {
         return [...products, product];
       });
-
-      this.storageService.setItem('products', this.products());
 
       return true;
     } catch (error) {
@@ -70,7 +51,18 @@ export class ProductsService {
         return [...products];
       });
 
-      this.storageService.setItem('products', this.products());
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
+
+  deleteProduct(id: number): boolean {
+    try {
+      this.products.update((products) => {
+        return [...products.filter((product) => product.id !== id)];
+      });
 
       return true;
     } catch (error) {
@@ -79,18 +71,12 @@ export class ProductsService {
     }
   }
 
-  deleteProduct(id: string): boolean {
-    try {
-      this.products.update((products) => {
-        return [...products.filter((product) => product.id !== id)];
-      });
-
-      this.storageService.setItem('products', this.products());
-
-      return true;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
+  getNewProductInput(): ProductInput {
+    return {
+      name: '',
+      description: '',
+      price: 0,
+      imageUrl: null,
+    };
   }
 }

@@ -1,0 +1,9 @@
+.layout {
+  $header-height: 10%;
+
+  width: 100vw;
+  height: 100svh;
+
+  display: grid;
+  grid-template-rows: $header-height 1fr;
+}
