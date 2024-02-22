@@ -1,15 +1,22 @@
 <div class="container">
   @if (productForm) {
   <form [formGroup]="productForm">
-    <input formControlName="name" type="text" placeholder="Name" />
-    <input
-      formControlName="description"
+    <app-input [control]="productForm.get('name')" label="Name" type="text" />
+    <app-input
+      [control]="productForm.get('description')"
+      label="Description"
       type="text"
-      placeholder="Description"
     />
-    <input formControlName="price" type="number" placeholder="Price" />
-    <input formControlName="imageUrl" type="text" placeholder="Image URL" />
-    <app-input />
+    <app-input
+      [control]="productForm.get('price')"
+      label="Price"
+      type="number"
+    />
+    <app-input
+      [control]="productForm.get('imageUrl')"
+      label="Image URL"
+      type="text"
+    />
   </form>
 
   <!-- Image Preview -->

@@ -1,10 +1,11 @@
 <div class="input-group">
-  <label class="input-group__label" for="name">Name</label>
+  <label class="input-group__label" [for]="name()">{{ label() }}</label>
   <input
+    [formControl]="formControl()"
     class="input-group__input"
-    type="text"
-    name="name"
-    placeholder="Name"
+    [type]="type()"
+    [name]="name()"
+    [placeholder]="label()"
   />
-  <div class="input-group__hint">Name is required</div>
+  <div class="input-group__hint">{{ label() }} is required</div>
 </div>

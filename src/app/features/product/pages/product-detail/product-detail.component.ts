@@ -14,6 +14,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { DefaultImageUrl } from '../../../../core/constants/DefaultImageUrl';
 import { InputComponent } from '../../../../shared/components/input/input.component';
@@ -85,9 +86,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   generateForm(productInput: ProductInput): void {
     this.productForm = this.formBuilder.group({
-      name: [productInput.name],
+      name: [productInput.name, Validators.required],
       description: [productInput.description],
-      price: [productInput.price],
+      price: [productInput.price, Validators.required],
       imageUrl: [productInput.imageUrl],
     });
   }
