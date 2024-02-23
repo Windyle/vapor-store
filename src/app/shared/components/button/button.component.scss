@@ -1,0 +1,102 @@
+@import '../../../../styles/variables.scss';
+
+:host(.small) {
+  width: 150px;
+
+  .button {
+    padding: 0.3rem 0.7rem;
+  }
+}
+
+:host(.medium) {
+  width: 250px;
+
+  .button {
+    padding: 0.6rem 1.1rem;
+  }
+}
+
+:host(.large) {
+  width: 400px;
+
+  .button {
+    padding: 0.6rem 1.1rem;
+  }
+}
+
+:host(.block) {
+  width: 100%;
+
+  .button {
+    padding: 0.6rem 1.1rem;
+  }
+}
+
+.button {
+  width: 100%;
+
+  transition: background-color 0.1s ease-in-out;
+
+  border-radius: 8px;
+
+  color: $text;
+  font-size: 1.1rem;
+  text-decoration: none;
+  text-align: center;
+
+  cursor: pointer;
+
+  &.primary {
+    background-color: transparentize($primary, 0.7);
+    border: 2px solid transparentize($primary, 0.2);
+
+    &:hover {
+      background-color: transparentize($primary, 0.2);
+    }
+
+    &:active {
+      background-color: transparentize($primary, 0.5);
+    }
+  }
+
+  &.accent {
+    background-color: transparentize($accent, 0.7);
+    border: 2px solid transparentize($accent, 0.2);
+
+    &:hover {
+      background-color: transparentize($accent, 0.2);
+    }
+
+    &:active {
+      background-color: transparentize($accent, 0.5);
+    }
+  }
+
+  &.danger {
+    background-color: transparentize($danger, 0.7);
+    border: 2px solid transparentize($danger, 0.2);
+
+    &:hover {
+      background-color: transparentize($danger, 0.5);
+    }
+
+    &:active {
+      background-color: transparentize($danger, 0.6);
+    }
+  }
+
+  &.neutral {
+    background-color: transparentize($text, 0.9);
+    border: 2px solid transparentize($text, 0.5);
+
+    color: transparentize($text, 0.25);
+
+    &:hover {
+      background-color: transparentize($text, 0.8);
+    }
+
+    &:active {
+      background-color: transparentize($text, 0.7);
+    }
+  }
+}

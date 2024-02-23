@@ -2,8 +2,11 @@ import { Injectable, inject, signal } from '@angular/core';
 import { Product, ProductInput } from '../../core/models/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DefaultHttpResponse } from '../../core/models/default-http-response';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ProductsService {
   // Consts
   private readonly API_HOST = 'http://localhost:3000';
@@ -14,61 +17,52 @@ export class ProductsService {
   // Services
   http = inject(HttpClient);
 
-  constructor() {}
+  // Methods
 
+  // GET - /product
   loadProducts(): void {
     this.http
-      .get<Product[]>(`${this.API_HOST}/product`)
-      .subscribe((products) => {
-        this.products.set(products);
-
-        console.log(this.products());
+      .get<DefaultHttpResponse<Product[]>>(`${this.API_HOST}/product`)
+      .subscribe((productsResponse: DefaultHttpResponse<Product[]>) => {
+        if (productsResponse.statusCode === 200) {
+          this.products.set(productsResponse.data);
+        }
       });
   }
 
-  getProduct(id: number): Observable<Product | null> {
-    return this.http.get<Product | null>(`${this.API_HOST}/product/${id}`);
+  // GET - /product/:id
+  getProduct(id: number): Observable<DefaultHttpResponse<Product | null>> {
+    return this.http.get<DefaultHttpResponse<Product | null>>(
+      `${this.API_HOST}/product/${id}`
+    );
   }
 
-  createProduct(product: Product): boolean {
-    try {
-      this.products.update((products) => {
-        return [...products, product];
-      });
-
-      return true;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
+  // POST - /product
+  createProduct(
+    product: ProductInput
+  ): Observable<DefaultHttpResponse<Product | null>> {
+    return this.http.post<DefaultHttpResponse<Product | null>>(
+      `${this.API_HOST}/product`,
+      product
+    );
   }
 
-  updateProduct(product: Product): boolean {
-    try {
-      this.products.update((products) => {
-        const index = products.findIndex((p) => p.id === product.id);
-        products[index] = product;
-        return [...products];
-      });
-
-      return true;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
+  // PUT - /product/:id
+  updateProduct(
+    product: ProductInput,
+    id: number
+  ): Observable<DefaultHttpResponse<Product | null>> {
+    return this.http.put<DefaultHttpResponse<Product | null>>(
+      `${this.API_HOST}/product/${id}`,
+      product
+    );
   }
 
-  deleteProduct(id: number): boolean {
-    try {
-      this.products.update((products) => {
-        return [...products.filter((product) => product.id !== id)];
-      });
-
-      return true;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
+  // DELETE - /product/:id
+  deleteProduct(id: number): Observable<DefaultHttpResponse<Product>> {
+    return this.http.delete<DefaultHttpResponse<Product>>(
+      `${this.API_HOST}/product/${id}`
+    );
   }
 
   getNewProductInput(): ProductInput {

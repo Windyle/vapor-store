@@ -27,4 +27,11 @@ export const routes: Routes = [
     redirectTo: 'products',
     pathMatch: 'full',
   },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./core/components/not-found/not-found.component').then(
+        (c) => c.NotFoundComponent
+      ),
+  },
 ];

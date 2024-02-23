@@ -1,21 +1,53 @@
 @import "../../../../styles/variables";
 
-.title {
+:host {
+  height: 12svh;
+}
+
+.header {
   width: 100%;
   height: 100%;
 
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 
-  a {
+  position: relative;
+
+  .title {
     font-family: "Audiowide", sans-serif;
-    font-size: 3rem;
+    font-size: 7vmin;
     color: $text;
 
     user-select: none;
     cursor: pointer;
 
     text-decoration: none;
+  }
+
+  .back-button {
+    position: absolute;
+    left: 3.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-size: 1.3rem;
+    color: $text;
+
+    user-select: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    text-decoration: none;
+
+    transition: color 0.1s ease-in-out;
+
+    &:hover {
+      color: $accent;
+    }
   }
 }

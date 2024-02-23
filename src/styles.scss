@@ -13,36 +13,10 @@ body {
   padding: 0;
   overflow: hidden;
 
-  background-image: linear-gradient(
-    to bottom,
-    $background,
-    lighten($background, 12%)
-  );
+  background-image: linear-gradient(to bottom,
+      $background,
+      lighten($background, 12%));
 
   font-family: "Roboto", sans-serif;
   color: $text;
-}
-
-.button {
-  width: 100%;
-  padding: 0.6rem 1.1rem;
-  margin: 0 3.5rem;
-  background-color: $accent;
-  border: none;
-  color: $accent-text;
-  font-weight: bold;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.05s;
-  text-decoration: none;
-  text-align: center;
-
-  &:hover {
-    background-color: $primary;
-  }
-
-  &:active {
-    background-color: $accent;
-  }
 }

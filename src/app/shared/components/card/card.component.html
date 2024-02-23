@@ -1,13 +1,13 @@
-<a class="card" [routerLink]="routerLink()">
+<div class="card" (click)="onCardClick()">
   <div class="card__image">
     <img [src]="imageUrl()" alt="Product Image" />
   </div>
   <div class="card__actions">
-    <app-card-action-button [icon]="faTrash" />
+    <app-card-delete-button [icon]="faTrash" [productName]="name()" [productId]="id()" />
   </div>
   <div class="card__details">
     <h1 class="card__details-title">{{ name() }}</h1>
     <p class="card__details-description">{{ description() }}</p>
     <p class="card__details-price">{{ price() | currency }}</p>
   </div>
-</a>
+</div>

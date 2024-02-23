@@ -1,0 +1,17 @@
+@import '../../../../styles/variables';
+
+:host {
+  display: grid;
+  place-items: center;
+}
+
+img {
+  min-width: 50%;
+  min-height: 200px;
+  max-width: 90%;
+
+  border-radius: 1rem;
+
+  -webkit-box-shadow: 0 0 1rem 0.5rem transparentize($background, 0.5);
+  box-shadow: 0 0 1rem 0.5rem transparentize($background, 0.5);
+}

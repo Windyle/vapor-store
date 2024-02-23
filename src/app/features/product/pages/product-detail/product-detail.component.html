@@ -1,32 +1,17 @@
 <div class="container">
   @if (productForm) {
-  <form [formGroup]="productForm">
+  <form class="form" [formGroup]="productForm">
     <app-input [control]="productForm.get('name')" label="Name" type="text" />
-    <app-input
-      [control]="productForm.get('description')"
-      label="Description"
-      type="text"
-    />
-    <app-input
-      [control]="productForm.get('price')"
-      label="Price"
-      type="number"
-    />
-    <app-input
-      [control]="productForm.get('imageUrl')"
-      label="Image URL"
-      type="text"
-    />
+    <app-input [control]="productForm.get('description')" label="Description" type="text" />
+    <app-input [control]="productForm.get('price')" label="Price" type="number" />
+    <app-input [control]="productForm.get('imageUrl')" label="Image URL" type="text" />
+
+    <app-button size="block" color="primary" (onClick)="onSave()">Save Product</app-button>
   </form>
 
   <!-- Image Preview -->
-  <div>
-    @if (productForm.get('imageUrl')) {
-    <img
-      [src]="productForm.get('imageUrl')!.value || defaultImageUrl"
-      alt="Product Image"
-    />
-    }
+  <div class="image-preview">
+    <app-image-preview [src]="productForm.get('imageUrl')!.value" />
   </div>
   }
 </div>

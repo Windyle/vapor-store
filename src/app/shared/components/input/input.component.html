@@ -1,11 +1,18 @@
+@if (formControl) {
 <div class="input-group">
-  <label class="input-group__label" [for]="name()">{{ label() }}</label>
-  <input
-    [formControl]="formControl()"
-    class="input-group__input"
-    [type]="type()"
-    [name]="name()"
-    [placeholder]="label()"
-  />
-  <div class="input-group__hint">{{ label() }} is required</div>
+  <label class="input-group__label" [for]="name()">
+    <span class="input-group__label-text">{{ label() }}</span>
+    @if (required) {
+    <span class="input-group__label-required">*</span>
+    }
+  </label>
+  <input [formControl]="formControl" class="input-group__input" [ngClass]="{
+    'input-group__input--invalid': invalid
+  }" [type]="type()" [name]="name()" [placeholder]="label()" />
+  <div class="input-group__hint">
+    @if (invalid) {
+    {{ label() }} is required
+    }
+  </div>
 </div>
+}

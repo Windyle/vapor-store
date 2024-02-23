@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './core/components/header/header.component';
+import { ModalService } from './shared/services/modal/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,13 @@ import { HeaderComponent } from './core/components/header/header.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'vapor';
+export class AppComponent implements OnInit {
+  // Injections
+  modalService = inject(ModalService);
+  viewContainerRef = inject(ViewContainerRef);
+
+  // Lifecycle
+  ngOnInit(): void {
+    this.modalService.setRootViewContainerRef(this.viewContainerRef);
+  }
 }
