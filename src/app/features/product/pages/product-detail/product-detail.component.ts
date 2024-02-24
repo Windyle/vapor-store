@@ -99,7 +99,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
           }
         },
         error: (error: HttpErrorResponse) => {
-          console.log(error);
+          console.error(error);
           this.alertService.showAlert(
             error.error?.message || 'There was an error loading the product',
             'danger',

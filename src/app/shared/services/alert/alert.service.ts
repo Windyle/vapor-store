@@ -25,8 +25,6 @@ export class AlertService {
       component.instance.message = message;
       component.instance.type = type;
 
-      console.log('component', component);
-
       this.closeAlert$ = component.instance.closeAlert.subscribe({
         next: () => {
           this.closeAlert(component);
