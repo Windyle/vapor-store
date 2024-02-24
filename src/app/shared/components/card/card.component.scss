@@ -2,31 +2,23 @@
 
 .card {
   width: 100%;
-  height: 250px;
-
+  height: $card-height;
   overflow: hidden;
-
   position: relative;
-
   display: grid;
   grid-template-rows: 25% 1fr;
-
-  border-radius: 15px;
+  border-radius: $card-radius;
   border: 1px solid transparentize($primary, 0.75);
-
-  -webkit-box-shadow: 0px 6px 8px 0px transparentize($primary, 0.75);
-  box-shadow: 0px 6px 8px 0px transparentize($primary, 0.75);
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-
+  -webkit-box-shadow: $card-shadow;
+  box-shadow: $card-shadow;
+  transition: $card-transition;
   color: $text;
   text-decoration: none;
-
   cursor: pointer;
 
   &:hover {
-    -webkit-box-shadow: 0px 6px 12px 0px transparentize($primary, 0.5);
-    box-shadow: 0px 6px 12px 0px transparentize($primary, 0.5);
-
+    -webkit-box-shadow: $card-shadow-hover;
+    box-shadow: $card-shadow-hover;
     transform: translateY(-5px);
   }
 
@@ -34,52 +26,41 @@
     position: absolute;
     bottom: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-
     overflow: hidden;
 
     img {
       width: 100%;
       opacity: 0.65;
-
       position: absolute;
       top: 50%;
-
       transform: translateY(-50%);
-
       object-fit: fill;
     }
   }
 
-  &__actions {
+  &__actions,
+  &__details {
     z-index: 10;
-
     width: 100%;
     height: 100%;
+  }
 
+  &__actions {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
     padding: 1rem;
   }
 
   &__details {
-    z-index: 10;
-
-    width: 100%;
-    height: 100%;
-
     padding: 1.5rem;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
     gap: 0.5rem;
-
     background-image: linear-gradient(to top, $background, transparent);
 
     h1,

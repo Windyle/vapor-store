@@ -6,7 +6,7 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { DefaultImageUrl } from '../../../core/constants/DefaultImageUrl';
+import { DefaultImageUrl } from '../../../core/constants/default-image-url';
 
 @Component({
   selector: 'app-image-preview',
@@ -18,13 +18,16 @@ import { DefaultImageUrl } from '../../../core/constants/DefaultImageUrl';
 export class ImagePreviewComponent implements AfterViewInit {
   @ViewChild('image', { static: true }) image?: ElementRef<HTMLImageElement>;
 
-  // Properties
-  src = input<string>();
-  calculatedSrc = computed(() => {
+  // Public Properties
+  public src = input<string>();
+
+  // Computed Properties
+  public calculatedSrc = computed(() => {
     return this.src() || DefaultImageUrl;
   });
 
-  ngAfterViewInit() {
+  // Lifecycle
+  public ngAfterViewInit() {
     this.image!.nativeElement.onerror = () => {
       this.image!.nativeElement.src = DefaultImageUrl;
     };

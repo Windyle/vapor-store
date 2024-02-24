@@ -16,14 +16,24 @@ import { Subscription } from 'rxjs';
   styleUrl: './input.component.scss',
 })
 export class InputComponent implements OnDestroy {
+  // Inputs
   @Input({ required: true }) set control(value: AbstractControl | null) {
     if (value) {
       this.formControl = value as FormControl;
       this.required = this.formControl.hasValidator(Validators.required);
 
-      this.validity$ = this.formControl.statusChanges.subscribe(() => {
-        console.log('status changed');
-        if (this.formControl) this.invalid = this.formControl.invalid;
+      // Subscribe to the form control's status changes to update the error key and error params
+      this.validity$ = this.formControl.statusChanges.subscribe({
+        next: () => {
+          if (this.formControl) {
+            this.errorKey =
+              Object.keys(this.formControl.errors || [])[0] || null;
+
+            if (this.errorKey) {
+              this.errorParams = this.formControl.getError(this.errorKey) || {};
+            }
+          }
+        },
       });
       return;
     }
@@ -31,15 +41,17 @@ export class InputComponent implements OnDestroy {
     this.formControl = null;
   }
 
-  formControl: FormControl | null = null;
+  public label = input.required<string>();
+  public type = input.required<'text' | 'number'>();
 
-  label = input.required<string>();
-  type = input.required<'text' | 'number'>();
+  // Public Properties
+  public formControl: FormControl | null = null;
+  public required: boolean = false;
+  public errorKey: string | null = null;
+  public errorParams: { [key: string]: string } = {};
 
+  // Computed Properties
   name = computed(() => this.label().toLowerCase().replace(' ', '-'));
-
-  required: boolean = false;
-  invalid: boolean = false;
 
   // Subscriptions
   private validity$?: Subscription;

@@ -6,3 +6,17 @@ $accent: #3f9ae9;
 $accent-text: #0b141c;
 $danger: #e63946;
 $danger-text: #0b141c;
+$warning: #f9c74f;
+$warning-text: #0b141c;
+$success: #28a745;
+$success-text: #0b141c;
+
+$card-height: 250px;
+$card-radius: 15px;
+$card-shadow: 0px 6px 8px 0px transparentize($primary, 0.75);
+$card-shadow-hover: 0px 6px 12px 0px transparentize($primary, 0.5);
+$card-transition:
+  box-shadow 0.3s ease-in-out,
+  transform 0.3s ease-in-out,
+  color 0.3s ease-in-out,
+  background-color 0.3s ease-in-out;

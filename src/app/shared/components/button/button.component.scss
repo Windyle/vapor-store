@@ -1,49 +1,13 @@
-@import '../../../../styles/variables.scss';
-
-:host(.small) {
-  width: 150px;
-
-  .button {
-    padding: 0.3rem 0.7rem;
-  }
-}
-
-:host(.medium) {
-  width: 250px;
-
-  .button {
-    padding: 0.6rem 1.1rem;
-  }
-}
-
-:host(.large) {
-  width: 400px;
-
-  .button {
-    padding: 0.6rem 1.1rem;
-  }
-}
-
-:host(.block) {
-  width: 100%;
-
-  .button {
-    padding: 0.6rem 1.1rem;
-  }
-}
+@import "../../../../styles/variables.scss";
 
 .button {
   width: 100%;
-
   transition: background-color 0.1s ease-in-out;
-
   border-radius: 8px;
-
   color: $text;
   font-size: 1.1rem;
   text-decoration: none;
   text-align: center;
-
   cursor: pointer;
 
   &.primary {
@@ -88,7 +52,6 @@
   &.neutral {
     background-color: transparentize($text, 0.9);
     border: 2px solid transparentize($text, 0.5);
-
     color: transparentize($text, 0.25);
 
     &:hover {
@@ -98,5 +61,30 @@
     &:active {
       background-color: transparentize($text, 0.7);
     }
+  }
+}
+
+:host(.small) {
+  width: 150px;
+
+  .button {
+    padding: 0.3rem 0.7rem;
+  }
+}
+
+:host(.medium) {
+  width: 250px;
+
+  .button {
+    padding: 0.6rem 1.1rem;
+  }
+}
+
+:host(.large),
+:host(.block) {
+  width: 100%;
+
+  .button {
+    padding: 0.6rem 1.1rem;
   }
 }

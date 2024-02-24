@@ -3,10 +3,19 @@
   <div class="modal__header">
     <h2>{{ title }}</h2>
   </div>
-  <div class="modal__body" [innerHtml]="messageSpan()">
-  </div>
+  <div class="modal__body" [innerHtml]="messageSpan()"></div>
   <div class="modal__footer">
-    <app-button (onClick)="onConfirm()" size="small" [color]="confirmButton.color">{{ confirmButton.text }}</app-button>
-    <app-button (onClick)="onCancel()" size="small" [color]="cancelButton.color">{{ cancelButton.text }}</app-button>
+    <app-button
+      (clickEvent)="onConfirm()"
+      size="small"
+      [color]="confirmButton.color"
+      >{{ confirmButton.text }}</app-button
+    >
+    <app-button
+      (clickEvent)="onCancel()"
+      size="small"
+      [color]="cancelButton.color"
+      >{{ cancelButton.text }}</app-button
+    >
   </div>
 </div>

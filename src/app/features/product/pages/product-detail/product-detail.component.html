@@ -1,17 +1,47 @@
 <div class="container">
   @if (productForm) {
-  <form class="form" [formGroup]="productForm">
-    <app-input [control]="productForm.get('name')" label="Name" type="text" />
-    <app-input [control]="productForm.get('description')" label="Description" type="text" />
-    <app-input [control]="productForm.get('price')" label="Price" type="number" />
-    <app-input [control]="productForm.get('imageUrl')" label="Image URL" type="text" />
+    <form class="form" [formGroup]="productForm">
+      <app-input [control]="productForm.get('name')" label="Name" type="text" />
+      <app-input
+        [control]="productForm.get('description')"
+        label="Description"
+        type="text"
+      />
+      <app-input
+        [control]="productForm.get('price')"
+        label="Price"
+        type="number"
+      />
+      <app-input
+        [control]="productForm.get('imageUrl')"
+        label="Image URL"
+        type="text"
+      />
 
-    <app-button size="block" color="primary" (onClick)="onSave()">Save Product</app-button>
-  </form>
+      <div class="form__actions">
+        <app-button
+          size="block"
+          color="primary"
+          (clickEvent)="onSave()"
+          [ngClass]="{
+            span: !id
+          }"
+          >Save Product</app-button
+        >
 
-  <!-- Image Preview -->
-  <div class="image-preview">
-    <app-image-preview [src]="productForm.get('imageUrl')!.value" />
-  </div>
+        @if (id && productForm.get("name")) {
+          <app-delete-button
+            size="block"
+            [productId]="id"
+            [productName]="productForm.get('name')!.value"
+          />
+        }
+      </div>
+    </form>
+
+    <!-- Image Preview -->
+    <div class="image-preview">
+      <app-image-preview [src]="productForm.get('imageUrl')!.value" />
+    </div>
   }
 </div>

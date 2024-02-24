@@ -1,0 +1,9 @@
+@if (icon()) {
+  <button class="btn" (click)="onClick($event)">
+    <fa-icon class="btn__icon" [icon]="icon()!"></fa-icon>
+  </button>
+} @else {
+  <app-button color="danger" [size]="size()" (clickEvent)="onClick($event)">
+    Delete Product
+  </app-button>
+}

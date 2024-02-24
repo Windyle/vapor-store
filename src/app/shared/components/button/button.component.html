@@ -1,8 +1,13 @@
-<button routerLink="/product" class="button" [ngClass]="{
-  'primary': color === 'primary',
-  'accent': color === 'accent',
-  'danger': color === 'danger',
-  'neutral': color === 'neutral'
-}" (click)="onClickBtn()">
+<button
+  routerLink="/product"
+  class="button"
+  [ngClass]="{
+    primary: color === 'primary',
+    accent: color === 'accent',
+    danger: color === 'danger',
+    neutral: color === 'neutral'
+  }"
+  (click)="onClickBtn($event)"
+>
   <ng-content />
 </button>

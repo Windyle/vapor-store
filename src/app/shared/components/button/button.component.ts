@@ -1,5 +1,9 @@
 import { NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output, input } from '@angular/core';
+import { ButtonColor } from '../../../core/types/button-color';
+import { ButtonColors } from '../../../core/enums/button-colors';
+import { ButtonSize } from '../../../core/types/button-size';
+import { ButtonSizes } from '../../../core/enums/button-sizes';
 
 @Component({
   selector: 'app-button',
@@ -12,16 +16,21 @@ import { Component, EventEmitter, Input, Output, input } from '@angular/core';
   },
 })
 export class ButtonComponent {
-  @Input() set size(value: 'small' | 'medium' | 'large' | 'block') {
-    this.sizeClass = value;
+  // Inputs
+  @Input() set size(value: ButtonSize) {
+    this.sizeClass = value || ButtonSizes.Medium;
   }
-  sizeClass: string = 'medium';
 
-  @Input() color: 'primary' | 'accent' | 'danger' | 'neutral' = 'neutral';
+  @Input() color: ButtonColor = ButtonColors.Neutral;
 
-  @Output() onClick = new EventEmitter<void>();
+  // Outputs
+  @Output() clickEvent = new EventEmitter<Event>();
 
-  onClickBtn(): void {
-    this.onClick.emit();
+  // Public Properties
+  public sizeClass: string = ButtonSizes.Medium;
+
+  // Public Methods
+  public onClickBtn(e: Event): void {
+    this.clickEvent.emit(e);
   }
 }

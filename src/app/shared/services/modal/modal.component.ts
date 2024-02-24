@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { ModalButton } from '../../../core/types/modal-button';
 import { ButtonComponent } from '../../components/button/button.component';
+import { ButtonColors } from '../../../core/enums/button-colors';
 
 @Component({
   selector: 'app-modal',
@@ -15,33 +16,34 @@ import { ButtonComponent } from '../../components/button/button.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
-  // Properties
-  title = '';
-  message = '';
-  confirmButton: ModalButton = {
+  // Public Properties
+  public title = '';
+  public message = '';
+  public confirmButton: ModalButton = {
     text: 'Confirm',
-    color: 'primary',
+    color: ButtonColors.Primary,
   };
-  cancelButton: ModalButton = {
+  public cancelButton: ModalButton = {
     text: 'Cancel',
-    color: 'neutral',
+    color: ButtonColors.Neutral,
   };
-  closeModal = new EventEmitter<boolean>();
 
-  // Methods
-  close(confirm: boolean): void {
+  public closeModal = new EventEmitter<boolean>();
+
+  // Public Methods
+  public close(confirm: boolean): void {
     this.closeModal.emit(confirm);
   }
 
-  onConfirm(): void {
+  public onConfirm(): void {
     this.close(true);
   }
 
-  onCancel(): void {
+  public onCancel(): void {
     this.close(false);
   }
 
-  messageSpan(): string {
+  public messageSpan(): string {
     return `<span>${this.message}</span>`;
   }
 }

@@ -1,22 +1,20 @@
-<main class="container">
-  <section class="header">
-    <app-button routerLink="/product" size="block" color="primary">New Product</app-button>
-  </section>
+<section class="grid">
+  <app-add-card />
 
-  <section class="grid">
-    <!-- Products grid defer -->
-    @defer (when productsService.products().length > 0) {
-
+  <!-- Products grid defer -->
+  @defer (when productsService.products().length > 0) {
     <!-- Products grid-->
-    @for (product of productsService.products(); track product.id) {
-    <app-card [product]="product" />
-    } @empty {
-    <div class="empty">No products found</div>
+    @for (
+      product of productsService.products();
+      track product.id;
+      let i = $index
+    ) {
+      <app-card
+        [@fadeIn]="{ value: 'fadeIn', params: { time: i / 3.5 } }"
+        [product]="product"
+      />
     }
 
     <!-- Products loading placeholder -->
-    } @placeholder {
-    <div class="empty">Loading...</div>
-    }
-  </section>
-</main>
+  } @placeholder {}
+</section>

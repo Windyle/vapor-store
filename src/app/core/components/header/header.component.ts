@@ -34,14 +34,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.router$ = this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event) => {
-        event = event as NavigationEnd;
+      .subscribe({
+        next: (event) => {
+          event = event as NavigationEnd;
 
-        if (this.isProductDetailRoute(event.urlAfterRedirects)) {
-          this.showBackButton.set(true);
-        } else {
-          this.showBackButton.set(false);
-        }
+          if (this.isProductDetailRoute(event.urlAfterRedirects)) {
+            this.showBackButton.set(true);
+          } else {
+            this.showBackButton.set(false);
+          }
+        },
       });
   }
 

@@ -1,4 +1,6 @@
+import { ButtonColor } from './button-color';
+
 export type ModalButton = {
   text: string;
-  color: 'primary' | 'accent' | 'danger' | 'neutral';
+  color: ButtonColor;
 };

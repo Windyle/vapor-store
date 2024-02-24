@@ -1,0 +1,12 @@
+<div
+  class="alert"
+  [innerHtml]="messageSpan()"
+  [ngClass]="{
+    success: type === 'success',
+    danger: type === 'danger',
+    warning: type === 'warning',
+    info: type === 'info',
+    slideUp: !fadingOut(),
+    fadeOut: fadingOut()
+  }"
+></div>

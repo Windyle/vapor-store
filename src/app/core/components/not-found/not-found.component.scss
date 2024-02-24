@@ -1,41 +1,33 @@
-@import '../../../../styles/variables.scss';
+@import "../../../../styles/variables.scss";
 
 .not-found {
   width: 100vw;
   height: 88svh;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  h1 {
+  h1,
+  h2 {
     font-family: "Audiowide", sans-serif;
-    font-size: 7vmin;
-
-    color: transparentize($text, 0.2);
     font-weight: 500;
-
     user-select: none;
-
     margin: 0;
   }
 
-  h2 {
-    font-family: "Audiowide", sans-serif;
-    font-size: 3vmin;
-
+  h1 {
+    font-size: 7vmin;
     color: transparentize($text, 0.2);
-    font-weight: 500;
+  }
 
-    user-select: none;
-
-    margin: 0;
+  h2 {
+    font-size: 3vmin;
+    color: transparentize($text, 0.2);
   }
 
   p {
     font-size: 2.5vmin;
-
     color: transparentize($text, 0.2);
   }
 }
