@@ -22,6 +22,7 @@ import { ImagePreviewComponent } from '../../../../shared/components/image-previ
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { AlertService } from '../../../../shared/services/alert/alert.service';
 import { ProductsService } from '../../products.service';
+import { AlertTypes } from '../../../../core/enums/alert-types';
 
 @Component({
   selector: 'app-product',
@@ -59,6 +60,12 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.paramMap$ = this.route.paramMap.subscribe({
       next: (params) => {
+        if (params.get('id') && isNaN(Number(params.get('id')))) {
+          this.alertService.showAlert('Invalid product ID', AlertTypes.Danger);
+          this.router.navigate(['/products']);
+          return;
+        }
+
         this.id = params.get('id') ? Number(params.get('id') as string) : null;
 
         if (this.id) {
