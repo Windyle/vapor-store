@@ -1,0 +1,12 @@
+<div class="input-group">
+  <div class="input-group__icon">
+    <fa-icon [icon]="icon()" />
+  </div>
+  @if (formControl) {
+    <select class="input-group__select" [formControl]="formControl">
+      @for (option of selectOptions(); track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+  }
+</div>

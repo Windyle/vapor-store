@@ -43,6 +43,7 @@ export class InputComponent implements OnDestroy {
 
   public label = input.required<string>();
   public type = input.required<'text' | 'number'>();
+  public hideLabel = input<boolean>(false);
 
   // Public Properties
   public formControl: FormControl | null = null;

@@ -1,20 +1,26 @@
-<section class="grid">
-  <app-add-card />
+<main class="container">
+  <!-- Search -->
+  <app-search />
 
-  <!-- Products grid defer -->
-  @defer (when productsService.products().length > 0) {
-    <!-- Products grid-->
-    @for (
-      product of productsService.products();
-      track product.id;
-      let i = $index
-    ) {
-      <app-card
-        [@fadeIn]="{ value: 'fadeIn', params: { time: i / 3.5 } }"
-        [product]="product"
-      />
-    }
+  <!-- Products Grid -->
+  <section class="grid">
+    <app-add-card />
 
-    <!-- Products loading placeholder -->
-  } @placeholder {}
-</section>
+    <!-- Products grid defer -->
+    @defer (when productsService.products().length > 0) {
+      <!-- Products grid-->
+      @for (
+        product of productsService.products();
+        track product.id;
+        let i = $index
+      ) {
+        <app-card
+          [@fadeIn]="{ value: 'fadeIn', params: { time: i / 3.5 } }"
+          [product]="product"
+        />
+      }
+
+      <!-- Products loading placeholder -->
+    } @placeholder {}
+  </section>
+</main>

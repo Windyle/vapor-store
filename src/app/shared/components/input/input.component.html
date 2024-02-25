@@ -1,9 +1,11 @@
 @if (formControl) {
   <div class="input-group">
     <label class="input-group__label" [for]="name()">
-      <span class="input-group__label-text">{{ label() }}</span>
-      @if (required) {
-        <span class="input-group__label-required">*</span>
+      @if (!hideLabel()) {
+        <span class="input-group__label-text">{{ label() }}</span>
+        @if (required) {
+          <span class="input-group__label-required">*</span>
+        }
       }
     </label>
     <input

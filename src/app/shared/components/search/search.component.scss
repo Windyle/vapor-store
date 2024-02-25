@@ -1,0 +1,10 @@
+@import "../../../../styles/variables";
+
+.search {
+  width: 25rem;
+  padding: 0 3.5rem;
+
+  &__select {
+    width: 100%;
+  }
+}

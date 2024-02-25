@@ -1,6 +1,6 @@
 <div class="container">
   @if (productForm) {
-    <form class="form" [formGroup]="productForm">
+    <div class="form">
       <app-input [control]="productForm.get('name')" label="Name" type="text" />
       <app-input
         [control]="productForm.get('description')"
@@ -37,7 +37,7 @@
           />
         }
       </div>
-    </form>
+    </div>
 
     <!-- Image Preview -->
     <div class="image-preview">
